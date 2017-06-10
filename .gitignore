@@ -147,8 +147,7 @@ Icon
 .com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
+.AppleDektop
 Network Trash Folder
 Temporary Items
 .apdisk
