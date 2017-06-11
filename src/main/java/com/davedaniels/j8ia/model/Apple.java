@@ -33,7 +33,7 @@ public class Apple {
     /**
      * This replaces the two other filter methods by accepting a Predicate. Alternatively,
      * can also be called with a lambda:
-     *
+     * <p>
      * <code>
      * List<Apple> actualWithLambda = Apple.filterApples(inventory, (Apple a) -> "green".equals((a.getColor())));
      * </code>

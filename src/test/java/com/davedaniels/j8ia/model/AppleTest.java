@@ -58,7 +58,7 @@ public class AppleTest {
         inventory.add(new Apple(200, "yellow"));
 
         List<Apple> actual = Apple.filterHeavyApples(inventory);
-        List<Apple> actualWithPred = Apple.filterApples(inventory, Apple::isHeavyApple);
+        List<Apple> actualWithMethodRef = Apple.filterApples(inventory, Apple::isHeavyApple);
         List<Apple> actualWithLambda = Apple.filterApples(inventory, (Apple a) -> a.getWeight() > 150);
 
         List<Apple> expected = new ArrayList<>();
@@ -66,7 +66,7 @@ public class AppleTest {
         expected.add(inventory.get(4));
 
         Truth.assertThat(actual).isEqualTo(expected);
-        Truth.assertThat(actual).isEqualTo(actualWithPred);
+        Truth.assertThat(actual).isEqualTo(actualWithMethodRef);
         Truth.assertThat(actual).isEqualTo(actualWithLambda);
     }
 }
