@@ -24,6 +24,7 @@ public class DishTest {
         Truth.assertThat(names).isEqualTo(Arrays.asList("Apple", "Zuchinie"));
     }
 
+    // blah
     @Test
     public void collect() {
         List<Dish> menu = Arrays.asList(new Dish(300, "Zuchinie", "veggie"), new Dish(600, "Pie", "dessert"), new Dish(200, "Apple", "veggie"));
