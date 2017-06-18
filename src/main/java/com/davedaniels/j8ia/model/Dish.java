@@ -6,18 +6,25 @@ package com.davedaniels.j8ia.model;
 public class Dish {
     private int calories;
 
+    private boolean vegetarian;
+
     private String name;
 
-    private String type;
+    private Type type;
 
     public Dish(int calories, String name) {
-        this(calories, name, "Unknown");
+        this(name, false, calories, Type.OTHER);
     }
 
-    public Dish(int calories, String name, String type) {
-        this.calories = calories;
+    public Dish(String name, boolean vegetarian, int calories, Type type) {
         this.name = name;
+        this.vegetarian = vegetarian;
+        this.calories = calories;
         this.type = type;
+    }
+
+    public boolean isVegetarian() {
+        return vegetarian;
     }
 
     public int getCalories() {
@@ -28,7 +35,14 @@ public class Dish {
         return name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    public enum Type {MEAT, FISH, OTHER}
 }

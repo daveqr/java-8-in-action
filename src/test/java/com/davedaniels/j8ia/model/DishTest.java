@@ -24,18 +24,28 @@ public class DishTest {
         Truth.assertThat(names).isEqualTo(Arrays.asList("Apple", "Zuchinie"));
     }
 
-    // blah
     @Test
     public void collect() {
-        List<Dish> menu = Arrays.asList(new Dish(300, "Zuchinie", "veggie"), new Dish(600, "Pie", "dessert"), new Dish(200, "Apple", "veggie"));
+        List<Dish> menu = buildMenu();
+        List<String> highc = menu.stream()
+                .filter(d -> d.getCalories() > 300)
+                .map(Dish::getName)
+                .limit(3)
+                .collect(Collectors.toList());
 
-        Map<String, List<Dish>> dishesByType = menu.stream()
-                .collect(Collectors.groupingBy(Dish::getType));
+        Truth.assertThat(highc).isEqualTo(Arrays.asList("pork", "beef", "chicken"));
+    }
 
-        Map<String, List<Dish>> expected = new HashMap<>();
-        expected.put("veggie", Arrays.asList(menu.get(0), menu.get(2)));
-        expected.put("dessert", Arrays.asList(menu.get(1)));
-
-        Truth.assertThat(dishesByType).isEqualTo(expected);
+    private List<Dish> buildMenu() {
+        return Arrays.asList(
+                new Dish("pork", false, 800, Dish.Type.MEAT),
+                new Dish("beef", false, 700, Dish.Type.MEAT),
+                new Dish("chicken", false, 400, Dish.Type.MEAT),
+                new Dish("french fries", true, 530, Dish.Type.MEAT),
+                new Dish("rice", true, 350, Dish.Type.MEAT),
+                new Dish("season fruit", true, 120, Dish.Type.MEAT),
+                new Dish("pizza", true, 550, Dish.Type.MEAT),
+                new Dish("prawns", false, 300, Dish.Type.MEAT),
+                new Dish("salmon", false, 450, Dish.Type.MEAT));
     }
 }
