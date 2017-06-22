@@ -28,8 +28,18 @@ public class DishTest {
     public void collect() {
         List<Dish> menu = buildMenu();
         List<String> highc = menu.stream()
-                .filter(d -> d.getCalories() > 300)
-                .map(Dish::getName)
+                .filter(d -> {
+                    // limit operation short circuits, so only first three are printed
+                    System.out.println("filtering " + d.getName());
+                    return d.getCalories() > 300;
+
+                })
+                .map(d -> {
+                    // if you run this, bother filtering and mapping are printed in the same pass despite being two separate operations
+                    // this is known as "loop fusion"
+                    System.out.println("mapping " + d.getName());
+                    return d.getName();
+                })
                 .limit(3)
                 .collect(Collectors.toList());
 
