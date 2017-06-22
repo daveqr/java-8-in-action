@@ -46,6 +46,40 @@ public class DishTest {
         Truth.assertThat(highc).isEqualTo(Arrays.asList("pork", "beef", "chicken"));
     }
 
+    @Test
+    public void isVegetarian() {
+        List<Dish> menu = buildMenu();
+        List<String> vegetarian = menu.stream()
+                .filter(Dish::isVegetarian)
+                .map(Dish::getName)
+                .collect(Collectors.toList());
+
+        Truth.assertThat(vegetarian).isEqualTo(Arrays.asList("french fries", "rice", "season fruit", "pizza"));
+    }
+
+    @Test
+    public void findAny() {
+        List<Dish> menu = buildMenu();
+        menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny()
+                .ifPresent(d -> {
+                    System.out.println(d.getName());
+                });
+    }
+
+    @Test
+    public void uniqueEvenNumbers() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 3, 2, 2, 4, 3, 2, 1);
+        List<Integer> result = numbers.stream()
+                .filter(i -> i % 2 == 0)
+                .distinct()
+                .collect(Collectors.toList());
+
+        System.out.println(result);
+        Truth.assertThat(result).isEqualTo(Arrays.asList(2, 4));
+    }
+
     private List<Dish> buildMenu() {
         return Arrays.asList(
                 new Dish("pork", false, 800, Dish.Type.MEAT),
